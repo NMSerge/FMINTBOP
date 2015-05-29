@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FmintModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAT_PIECE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORIE" Type="number" Precision="38" Scale="0" />
+          <Property Name="LIBELLE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CHAPITRE">
+          <Key>
+            <PropertyRef Name="CSECT" />
+            <PropertyRef Name="CODEC" />
+          </Key>
+          <Property Name="ANC" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CSECT" Type="varchar2" MaxLength="2" Nullable="false" />
+          <Property Name="CODEC" Type="varchar2" MaxLength="6" Nullable="false" />
+          <Property Name="LIBELLEC" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DROITS_USER">
+          <Key>
+            <PropertyRef Name="CODE_USER" />
+            <PropertyRef Name="CODE_TRANSACT" />
+          </Key>
+          <Property Name="CODE_USER" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CODE_TRANSACT" Type="number" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="A_DROIT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FMINT.ENGAGEMENT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ENGAGEMENT">
+          <Property Name="SEJOUR_ID" Type="varchar2" MaxLength="20" />
+          <Property Name="NUMMARCHE" Type="varchar2" MaxLength="60" />
+          <Property Name="DATE_ENG" Type="varchar2" MaxLength="15" />
+          <Property Name="LIBELLE" Type="varchar2" MaxLength="1000" />
+          <Property Name="MONTANT" Type="varchar2" MaxLength="20" />
+          <Property Name="CODEETAT" Type="number" Precision="38" Scale="0" />
+          <Property Name="NUMBC" Type="varchar2" MaxLength="60" />
+          <Property Name="BENEF" Type="varchar2" MaxLength="200" />
+          <Property Name="NUMAD" Type="varchar2" MaxLength="30" />
+          <Property Name="M_LETTRE" Type="varchar2" MaxLength="150" />
+          <Property Name="JUSTIFIER" Type="number" Precision="38" Scale="0" />
+        </EntityType>-->
+        <EntityType Name="FONCT">
+          <Key>
+            <PropertyRef Name="N_MATTIR" />
+            <PropertyRef Name="C_MATTIR" />
+          </Key>
+          <Property Name="N_MATTIR" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="C_MATTIR" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="L_NOM" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="L_PREN" Type="varchar2" MaxLength="25" />
+          <Property Name="GRADE" Type="varchar2" MaxLength="10" />
+          <Property Name="SRC" Type="number" Precision="38" Scale="0" />
+          <Property Name="GROUPE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="INDICE" Type="varchar2" MaxLength="5" />
+          <Property Name="SRV_EMPLOYEUR" Type="varchar2" MaxLength="2000" />
+          <Property Name="CODE_SERV" Type="varchar2" MaxLength="30" />
+          <Property Name="LOCAL" Type="number" Precision="1" Scale="0" />
+          <Property Name="DATE_C" Type="date" />
+          <Property Name="CODE_PROVINCE" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="GRILLE">
+          <Key>
+            <PropertyRef Name="GROUPE" />
+            <PropertyRef Name="ZONE" />
+          </Key>
+          <Property Name="GROUPE" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="ZONE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="MONTANT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="GROUPE">
+          <Key>
+            <PropertyRef Name="CODE_FONC" />
+            <PropertyRef Name="GROUPE" />
+          </Key>
+          <Property Name="CODE_FONC" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="LIB_FONC" Type="varchar2" MaxLength="1000" Nullable="false" />
+          <Property Name="GROUPE" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOGON">
+          <Key>
+            <PropertyRef Name="NUMMATRIC" />
+            <PropertyRef Name="CODE_USER" />
+            <PropertyRef Name="CLEMATRIC" />
+          </Key>
+          <Property Name="NUMMATRIC" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="USER_NOM" Type="varchar2" MaxLength="50" />
+          <Property Name="USER_PWD" Type="varchar2" MaxLength="20" />
+          <Property Name="CODE_USER" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CLEMATRIC" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="FONCTION" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMINT.NATURE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NATURE">
+          <Key>
+            <PropertyRef Name="ANN" />
+            <PropertyRef Name="CODEN" />
+            <PropertyRef Name="LIBELLEN" />
+          </Key>
+          <Property Name="ANN" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CODEN" Type="varchar2" MaxLength="4" Nullable="false" />
+          <Property Name="LIBELLEN" Type="varchar2" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PARAM">
+          <Key>
+            <PropertyRef Name="CODE_PROV" />
+          </Key>
+          <Property Name="CODE_PROV" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="LIBELLE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="C_INDEX" Type="number" Precision="10" Scale="0" />
+          <Property Name="TAUX" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CSTANTE" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LIB_ENTETE" Type="varchar2" MaxLength="100" />
+          <Property Name="LIB_ENTETE_SUITE" Type="varchar2" MaxLength="100" />
+          <Property Name="BOITE_POSTALE" Type="varchar2" MaxLength="100" />
+          <Property Name="CHEF_LIEUX" Type="varchar2" MaxLength="100" />
+          <Property Name="VERSION" Type="varchar2" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FMINT.PIECES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PIECES">
+          <Property Name="SEJOUR_ID" Type="varchar2" MaxLength="20" />
+          <Property Name="REF_PIECE" Type="varchar2" MaxLength="50" />
+          <Property Name="LIBELLE" Type="varchar2" MaxLength="500" />
+          <Property Name="CAT" Type="number" Precision="38" Scale="0" />
+        </EntityType>-->
+        <EntityType Name="PROFIL_USER">
+          <Key>
+            <PropertyRef Name="CODE_USER" />
+          </Key>
+          <Property Name="CODE_USER" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="PROFIL" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEJOUR">
+          <Key>
+            <PropertyRef Name="SEJOUR_ID" />
+          </Key>
+          <Property Name="SEJOUR_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="MATTIR" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="DATE_DEB" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="DATE_FIN" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="ZONE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="MT_TOTAL" Type="varchar2" MaxLength="20" />
+          <Property Name="GROUPE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="PAYS" Type="varchar2" MaxLength="100" />
+          <Property Name="VILLE" Type="varchar2" MaxLength="100" />
+          <Property Name="OBJET" Type="varchar2" MaxLength="500" />
+          <Property Name="MT_AVANCE" Type="varchar2" MaxLength="20" />
+          <Property Name="MT_RESTE" Type="varchar2" MaxLength="20" />
+          <Property Name="COMPTE_CREDITER" Type="varchar2" MaxLength="60" />
+          <Property Name="MT_AVANCE_SEJOUR" Type="varchar2" MaxLength="20" />
+          <Property Name="JUSTIFIER" Type="number" Precision="2" Scale="0" />
+          <Property Name="ENGAGER" Type="number" Precision="2" Scale="0" />
+          <Property Name="NB_ENGAGEMENT" Type="number" Precision="2" Scale="0" />
+          <Property Name="L_MT_AVANCE_SEJOUR" Type="varchar2" MaxLength="150" />
+          <Property Name="L_MT_RESTE" Type="varchar2" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMINT.SEJOUR_MC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SEJOUR_MC">
+          <Key>
+            <PropertyRef Name="SEJOUR_ID" />
+          </Key>
+          <Property Name="SEJOUR_ID" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="MT_TOTAL" Type="varchar2" MaxLength="20" />
+          <Property Name="C_DEST" Type="varchar2" MaxLength="8" />
+          <Property Name="C_NATU" Type="varchar2" MaxLength="4" />
+          <Property Name="AN" Type="varchar2" MaxLength="4" />
+          <Property Name="NUMAD" Type="varchar2" MaxLength="60" />
+          <Property Name="C_PCOM" Type="varchar2" MaxLength="20" />
+          <Property Name="MT_UTIL" Type="varchar2" MaxLength="20" />
+          <Property Name="ENGAGER" Type="number" Precision="2" Scale="0" />
+          <Property Name="VALIDER" Type="number" Precision="2" Scale="0" />
+          <Property Name="NATURE" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TRANSACT_USER">
+          <Key>
+            <PropertyRef Name="CODE_TRANSACT" />
+          </Key>
+          <Property Name="CODE_TRANSACT" Type="number" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="LIB_TRANSACT" Type="varchar2" MaxLength="1000" Nullable="false" />
+          <Property Name="ACCESS_VIA_MENU" Type="number" Precision="38" Scale="0" />
+          <Property Name="ORDRE_TRANSACT" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="ZONE_ID" />
+          </Key>
+          <Property Name="ZONE_ID" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="ZONE" Type="varchar2" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMINT.DECRET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DECRET">
+          <Key>
+            <PropertyRef Name="CODE_FONC" />
+            <PropertyRef Name="LIB_FONC" />
+            <PropertyRef Name="GROUPE" />
+            <PropertyRef Name="ZONE" />
+          </Key>
+          <Property Name="CODE_FONC" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="LIB_FONC" Type="varchar2" MaxLength="1000" Nullable="false" />
+          <Property Name="GROUPE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ZONE" Type="varchar2" MaxLength="60" Nullable="false" />
+          <Property Name="MONTANT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="FmintModelStoreContainer">
+          <EntitySet Name="CAT_PIECE" EntityType="Self.CAT_PIECE" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="CHAPITRE" EntityType="Self.CHAPITRE" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="DROITS_USER" EntityType="Self.DROITS_USER" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="FONCT" EntityType="Self.FONCT" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="GRILLE" EntityType="Self.GRILLE" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="GROUPE" EntityType="Self.GROUPE" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="LOGON" EntityType="Self.LOGON" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="PARAM" EntityType="Self.PARAM" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="PROFIL_USER" EntityType="Self.PROFIL_USER" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="SEJOUR" EntityType="Self.SEJOUR" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="TRANSACT_USER" EntityType="Self.TRANSACT_USER" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="ZONE" EntityType="Self.ZONE" Schema="FMINT" store:Type="Tables" />
+          <EntitySet Name="NATURE" EntityType="Self.NATURE" store:Type="Tables" store:Schema="FMINT">
+            <DefiningQuery>SELECT 
+"NATURE"."ANN" AS "ANN", 
+"NATURE"."CODEN" AS "CODEN", 
+"NATURE"."LIBELLEN" AS "LIBELLEN"
+FROM "FMINT"."NATURE" "NATURE"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SEJOUR_MC" EntityType="Self.SEJOUR_MC" store:Type="Tables" store:Schema="FMINT">
+            <DefiningQuery>SELECT 
+"SEJOUR_MC"."SEJOUR_ID" AS "SEJOUR_ID", 
+"SEJOUR_MC"."MT_TOTAL" AS "MT_TOTAL", 
+"SEJOUR_MC"."C_DEST" AS "C_DEST", 
+"SEJOUR_MC"."C_NATU" AS "C_NATU", 
+"SEJOUR_MC"."AN" AS "AN", 
+"SEJOUR_MC"."NUMAD" AS "NUMAD", 
+"SEJOUR_MC"."C_PCOM" AS "C_PCOM", 
+"SEJOUR_MC"."MT_UTIL" AS "MT_UTIL", 
+"SEJOUR_MC"."ENGAGER" AS "ENGAGER", 
+"SEJOUR_MC"."VALIDER" AS "VALIDER", 
+"SEJOUR_MC"."NATURE" AS "NATURE"
+FROM "FMINT"."SEJOUR_MC" "SEJOUR_MC"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DECRET" EntityType="Self.DECRET" store:Type="Views" store:Schema="FMINT">
+            <DefiningQuery>SELECT 
+"DECRET"."CODE_FONC" AS "CODE_FONC", 
+"DECRET"."LIB_FONC" AS "LIB_FONC", 
+"DECRET"."GROUPE" AS "GROUPE", 
+"DECRET"."ZONE" AS "ZONE", 
+"DECRET"."MONTANT" AS "MONTANT"
+FROM "FMINT"."DECRET" "DECRET"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FmintModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAT_PIECE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORIE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="LIBELLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CHAPITRE">
+          <Key>
+            <PropertyRef Name="CSECT" />
+            <PropertyRef Name="CODEC" />
+          </Key>
+          <Property Name="ANC" Type="Int16" Nullable="false" />
+          <Property Name="CSECT" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODEC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIBELLEC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DROITS_USER">
+          <Key>
+            <PropertyRef Name="CODE_USER" />
+            <PropertyRef Name="CODE_TRANSACT" />
+          </Key>
+          <Property Name="CODE_USER" Type="Int16" Nullable="false" />
+          <Property Name="CODE_TRANSACT" Type="Int16" Nullable="false" />
+          <Property Name="A_DROIT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="FONCT">
+          <Key>
+            <PropertyRef Name="N_MATTIR" />
+            <PropertyRef Name="C_MATTIR" />
+          </Key>
+          <Property Name="N_MATTIR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_MATTIR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_NOM" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_PREN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="GRADE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SRC" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="GROUPE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INDICE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SRV_EMPLOYEUR" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_SERV" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LOCAL" Type="Int16" />
+          <Property Name="DATE_C" Type="DateTime" />
+          <Property Name="CODE_PROVINCE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GRILLE">
+          <Key>
+            <PropertyRef Name="GROUPE" />
+            <PropertyRef Name="ZONE" />
+          </Key>
+          <Property Name="GROUPE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MONTANT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="GROUPE">
+          <Key>
+            <PropertyRef Name="CODE_FONC" />
+            <PropertyRef Name="GROUPE1" />
+          </Key>
+          <Property Name="CODE_FONC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIB_FONC" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUPE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOGON">
+          <Key>
+            <PropertyRef Name="NUMMATRIC" />
+            <PropertyRef Name="CODE_USER" />
+            <PropertyRef Name="CLEMATRIC" />
+          </Key>
+          <Property Name="NUMMATRIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USER_PWD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_USER" Type="Int16" Nullable="false" />
+          <Property Name="CLEMATRIC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FONCTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PARAM">
+          <Key>
+            <PropertyRef Name="CODE_PROV" />
+          </Key>
+          <Property Name="CODE_PROV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIBELLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_INDEX" Type="Int32" />
+          <Property Name="TAUX" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CSTANTE" Type="Int32" Nullable="false" />
+          <Property Name="LIB_ENTETE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LIB_ENTETE_SUITE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BOITE_POSTALE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CHEF_LIEUX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VERSION" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PROFIL_USER">
+          <Key>
+            <PropertyRef Name="CODE_USER" />
+          </Key>
+          <Property Name="CODE_USER" Type="Int16" Nullable="false" />
+          <Property Name="PROFIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEJOUR">
+          <Key>
+            <PropertyRef Name="SEJOUR_ID" />
+          </Key>
+          <Property Name="SEJOUR_ID" Type="Int32" Nullable="false" />
+          <Property Name="MATTIR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_DEB" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_FIN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MT_TOTAL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GROUPE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAYS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VILLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OBJET" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MT_AVANCE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MT_RESTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COMPTE_CREDITER" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="MT_AVANCE_SEJOUR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="JUSTIFIER" Type="Int16" />
+          <Property Name="ENGAGER" Type="Int16" />
+          <Property Name="NB_ENGAGEMENT" Type="Int16" />
+          <Property Name="L_MT_AVANCE_SEJOUR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="L_MT_RESTE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TRANSACT_USER">
+          <Key>
+            <PropertyRef Name="CODE_TRANSACT" />
+          </Key>
+          <Property Name="CODE_TRANSACT" Type="Int16" Nullable="false" />
+          <Property Name="LIB_TRANSACT" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACCESS_VIA_MENU" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ORDRE_TRANSACT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="ZONE_ID" />
+          </Key>
+          <Property Name="ZONE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZONE1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NATURE">
+          <Key>
+            <PropertyRef Name="ANN" />
+            <PropertyRef Name="CODEN" />
+            <PropertyRef Name="LIBELLEN" />
+          </Key>
+          <Property Name="ANN" Type="Int16" Nullable="false" />
+          <Property Name="CODEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIBELLEN" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEJOUR_MC">
+          <Key>
+            <PropertyRef Name="SEJOUR_ID" />
+          </Key>
+          <Property Name="SEJOUR_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MT_TOTAL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="C_DEST" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="C_NATU" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="AN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NUMAD" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="C_PCOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MT_UTIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ENGAGER" Type="Int16" />
+          <Property Name="VALIDER" Type="Int16" />
+          <Property Name="NATURE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DECRET">
+          <Key>
+            <PropertyRef Name="CODE_FONC" />
+            <PropertyRef Name="LIB_FONC" />
+            <PropertyRef Name="GROUPE" />
+            <PropertyRef Name="ZONE" />
+          </Key>
+          <Property Name="CODE_FONC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIB_FONC" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MONTANT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="FmintEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAT_PIECE" EntityType="Self.CAT_PIECE" />
+          <EntitySet Name="CHAPITREs" EntityType="Self.CHAPITRE" />
+          <EntitySet Name="DROITS_USER" EntityType="Self.DROITS_USER" />
+          <EntitySet Name="FONCTs" EntityType="Self.FONCT" />
+          <EntitySet Name="GRILLEs" EntityType="Self.GRILLE" />
+          <EntitySet Name="GROUPEs" EntityType="Self.GROUPE" />
+          <EntitySet Name="LOGONs" EntityType="Self.LOGON" />
+          <EntitySet Name="PARAMs" EntityType="Self.PARAM" />
+          <EntitySet Name="PROFIL_USER" EntityType="Self.PROFIL_USER" />
+          <EntitySet Name="SEJOURs" EntityType="Self.SEJOUR" />
+          <EntitySet Name="TRANSACT_USER" EntityType="Self.TRANSACT_USER" />
+          <EntitySet Name="ZONEs" EntityType="Self.ZONE" />
+          <EntitySet Name="NATUREs" EntityType="Self.NATURE" />
+          <EntitySet Name="SEJOUR_MC" EntityType="Self.SEJOUR_MC" />
+          <EntitySet Name="DECRETs" EntityType="Self.DECRET" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FmintModelStoreContainer" CdmEntityContainer="FmintEntities">
+          <EntitySetMapping Name="CAT_PIECE">
+            <EntityTypeMapping TypeName="FmintModel.CAT_PIECE">
+              <MappingFragment StoreEntitySet="CAT_PIECE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CATEGORIE" ColumnName="CATEGORIE" />
+                <ScalarProperty Name="LIBELLE" ColumnName="LIBELLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHAPITREs">
+            <EntityTypeMapping TypeName="FmintModel.CHAPITRE">
+              <MappingFragment StoreEntitySet="CHAPITRE">
+                <ScalarProperty Name="ANC" ColumnName="ANC" />
+                <ScalarProperty Name="CSECT" ColumnName="CSECT" />
+                <ScalarProperty Name="CODEC" ColumnName="CODEC" />
+                <ScalarProperty Name="LIBELLEC" ColumnName="LIBELLEC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DROITS_USER">
+            <EntityTypeMapping TypeName="FmintModel.DROITS_USER">
+              <MappingFragment StoreEntitySet="DROITS_USER">
+                <ScalarProperty Name="CODE_USER" ColumnName="CODE_USER" />
+                <ScalarProperty Name="CODE_TRANSACT" ColumnName="CODE_TRANSACT" />
+                <ScalarProperty Name="A_DROIT" ColumnName="A_DROIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FONCTs">
+            <EntityTypeMapping TypeName="FmintModel.FONCT">
+              <MappingFragment StoreEntitySet="FONCT">
+                <ScalarProperty Name="N_MATTIR" ColumnName="N_MATTIR" />
+                <ScalarProperty Name="C_MATTIR" ColumnName="C_MATTIR" />
+                <ScalarProperty Name="L_NOM" ColumnName="L_NOM" />
+                <ScalarProperty Name="L_PREN" ColumnName="L_PREN" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="SRC" ColumnName="SRC" />
+                <ScalarProperty Name="GROUPE" ColumnName="GROUPE" />
+                <ScalarProperty Name="INDICE" ColumnName="INDICE" />
+                <ScalarProperty Name="SRV_EMPLOYEUR" ColumnName="SRV_EMPLOYEUR" />
+                <ScalarProperty Name="CODE_SERV" ColumnName="CODE_SERV" />
+                <ScalarProperty Name="LOCAL" ColumnName="LOCAL" />
+                <ScalarProperty Name="DATE_C" ColumnName="DATE_C" />
+                <ScalarProperty Name="CODE_PROVINCE" ColumnName="CODE_PROVINCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRILLEs">
+            <EntityTypeMapping TypeName="FmintModel.GRILLE">
+              <MappingFragment StoreEntitySet="GRILLE">
+                <ScalarProperty Name="GROUPE" ColumnName="GROUPE" />
+                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GROUPEs">
+            <EntityTypeMapping TypeName="FmintModel.GROUPE">
+              <MappingFragment StoreEntitySet="GROUPE">
+                <ScalarProperty Name="CODE_FONC" ColumnName="CODE_FONC" />
+                <ScalarProperty Name="LIB_FONC" ColumnName="LIB_FONC" />
+                <ScalarProperty Name="GROUPE1" ColumnName="GROUPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGONs">
+            <EntityTypeMapping TypeName="FmintModel.LOGON">
+              <MappingFragment StoreEntitySet="LOGON">
+                <ScalarProperty Name="NUMMATRIC" ColumnName="NUMMATRIC" />
+                <ScalarProperty Name="USER_NOM" ColumnName="USER_NOM" />
+                <ScalarProperty Name="USER_PWD" ColumnName="USER_PWD" />
+                <ScalarProperty Name="CODE_USER" ColumnName="CODE_USER" />
+                <ScalarProperty Name="CLEMATRIC" ColumnName="CLEMATRIC" />
+                <ScalarProperty Name="FONCTION" ColumnName="FONCTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARAMs">
+            <EntityTypeMapping TypeName="FmintModel.PARAM">
+              <MappingFragment StoreEntitySet="PARAM">
+                <ScalarProperty Name="CODE_PROV" ColumnName="CODE_PROV" />
+                <ScalarProperty Name="LIBELLE" ColumnName="LIBELLE" />
+                <ScalarProperty Name="C_INDEX" ColumnName="C_INDEX" />
+                <ScalarProperty Name="TAUX" ColumnName="TAUX" />
+                <ScalarProperty Name="CSTANTE" ColumnName="CSTANTE" />
+                <ScalarProperty Name="LIB_ENTETE" ColumnName="LIB_ENTETE" />
+                <ScalarProperty Name="LIB_ENTETE_SUITE" ColumnName="LIB_ENTETE_SUITE" />
+                <ScalarProperty Name="BOITE_POSTALE" ColumnName="BOITE_POSTALE" />
+                <ScalarProperty Name="CHEF_LIEUX" ColumnName="CHEF_LIEUX" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFIL_USER">
+            <EntityTypeMapping TypeName="FmintModel.PROFIL_USER">
+              <MappingFragment StoreEntitySet="PROFIL_USER">
+                <ScalarProperty Name="CODE_USER" ColumnName="CODE_USER" />
+                <ScalarProperty Name="PROFIL" ColumnName="PROFIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEJOURs">
+            <EntityTypeMapping TypeName="FmintModel.SEJOUR">
+              <MappingFragment StoreEntitySet="SEJOUR">
+                <ScalarProperty Name="SEJOUR_ID" ColumnName="SEJOUR_ID" />
+                <ScalarProperty Name="MATTIR" ColumnName="MATTIR" />
+                <ScalarProperty Name="DATE_DEB" ColumnName="DATE_DEB" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+                <ScalarProperty Name="MT_TOTAL" ColumnName="MT_TOTAL" />
+                <ScalarProperty Name="GROUPE" ColumnName="GROUPE" />
+                <ScalarProperty Name="PAYS" ColumnName="PAYS" />
+                <ScalarProperty Name="VILLE" ColumnName="VILLE" />
+                <ScalarProperty Name="OBJET" ColumnName="OBJET" />
+                <ScalarProperty Name="MT_AVANCE" ColumnName="MT_AVANCE" />
+                <ScalarProperty Name="MT_RESTE" ColumnName="MT_RESTE" />
+                <ScalarProperty Name="COMPTE_CREDITER" ColumnName="COMPTE_CREDITER" />
+                <ScalarProperty Name="MT_AVANCE_SEJOUR" ColumnName="MT_AVANCE_SEJOUR" />
+                <ScalarProperty Name="JUSTIFIER" ColumnName="JUSTIFIER" />
+                <ScalarProperty Name="ENGAGER" ColumnName="ENGAGER" />
+                <ScalarProperty Name="NB_ENGAGEMENT" ColumnName="NB_ENGAGEMENT" />
+                <ScalarProperty Name="L_MT_AVANCE_SEJOUR" ColumnName="L_MT_AVANCE_SEJOUR" />
+                <ScalarProperty Name="L_MT_RESTE" ColumnName="L_MT_RESTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACT_USER">
+            <EntityTypeMapping TypeName="FmintModel.TRANSACT_USER">
+              <MappingFragment StoreEntitySet="TRANSACT_USER">
+                <ScalarProperty Name="CODE_TRANSACT" ColumnName="CODE_TRANSACT" />
+                <ScalarProperty Name="LIB_TRANSACT" ColumnName="LIB_TRANSACT" />
+                <ScalarProperty Name="ACCESS_VIA_MENU" ColumnName="ACCESS_VIA_MENU" />
+                <ScalarProperty Name="ORDRE_TRANSACT" ColumnName="ORDRE_TRANSACT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONEs">
+            <EntityTypeMapping TypeName="FmintModel.ZONE">
+              <MappingFragment StoreEntitySet="ZONE">
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="ZONE1" ColumnName="ZONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NATUREs">
+            <EntityTypeMapping TypeName="FmintModel.NATURE">
+              <MappingFragment StoreEntitySet="NATURE">
+                <ScalarProperty Name="ANN" ColumnName="ANN" />
+                <ScalarProperty Name="CODEN" ColumnName="CODEN" />
+                <ScalarProperty Name="LIBELLEN" ColumnName="LIBELLEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEJOUR_MC">
+            <EntityTypeMapping TypeName="FmintModel.SEJOUR_MC">
+              <MappingFragment StoreEntitySet="SEJOUR_MC">
+                <ScalarProperty Name="SEJOUR_ID" ColumnName="SEJOUR_ID" />
+                <ScalarProperty Name="MT_TOTAL" ColumnName="MT_TOTAL" />
+                <ScalarProperty Name="C_DEST" ColumnName="C_DEST" />
+                <ScalarProperty Name="C_NATU" ColumnName="C_NATU" />
+                <ScalarProperty Name="AN" ColumnName="AN" />
+                <ScalarProperty Name="NUMAD" ColumnName="NUMAD" />
+                <ScalarProperty Name="C_PCOM" ColumnName="C_PCOM" />
+                <ScalarProperty Name="MT_UTIL" ColumnName="MT_UTIL" />
+                <ScalarProperty Name="ENGAGER" ColumnName="ENGAGER" />
+                <ScalarProperty Name="VALIDER" ColumnName="VALIDER" />
+                <ScalarProperty Name="NATURE" ColumnName="NATURE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DECRETs">
+            <EntityTypeMapping TypeName="FmintModel.DECRET">
+              <MappingFragment StoreEntitySet="DECRET">
+                <ScalarProperty Name="CODE_FONC" ColumnName="CODE_FONC" />
+                <ScalarProperty Name="LIB_FONC" ColumnName="LIB_FONC" />
+                <ScalarProperty Name="GROUPE" ColumnName="GROUPE" />
+                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

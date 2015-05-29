@@ -1,0 +1,33 @@
+Description FMINT
+
+L'application FMINT a pour but d'engager les frais de mission.
+
+Opérations
+
+- L'utilisateur se connecte par login et mot de passe: son authentification est validée ou non.
+	- Si validée l'utilisateur accède aux engagements.
+	- Sinon il revient sur la fenêtre de connexion, et le processus d'authentification reprend.
+- L'utilisateur accède aux engagements (fenêtre de recherche des engagements) et peut soit :
+	- Créer: engager des frais de mission
+	- Modifier: modifier des frais de missions engagés
+	- Consulter: voir les frais de mission engagés
+
+	
+:Rechercher engagements
+
+- À partir de critères (paramètres), les engagements sont affichés pour la consultation
+	- on peut en sélectionner un pour voir son détail
+	- on peut en sélectionner un pour modification
+	
+	
+:Créer engagement
+
+- Un bouton permet d'accéder à la fenêtre de création des engagements possibilité d'annuler ou d'enregistrer, et une confirmation à la fin de l'opération.
+
+**************************************************************************************************************************************************************
+
+Remarques:
+
+La table des PROFIL_USER n'est pas utile. Une table PROFIL(code, libelle) suffit, avec code en PK et une jointure sur la table logon. 
+Dans ce cas, pas besoin de la table DROITS_USER. Dès lors qu'on connait le profil, on connait ses droits.
+
